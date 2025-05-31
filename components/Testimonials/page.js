@@ -8,21 +8,21 @@ const testimonials = [
     id: 1,
     name: "Sarah Johnson",
     role: "Homeowner",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
+    image: "testimonial women1.jpg",
     text: "ZSpace transformed our living room into a stunning space. Their attention to detail and creative solutions exceeded our expectations. The team was professional and made the entire process enjoyable."
   },
   {
     id: 2,
     name: "Michael Chen",
     role: "Apartment Owner",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
+    image: "testimonial man 1.jpg",
     text: "I was amazed by how they maximized our small apartment space. The design is both functional and beautiful. The team&apos;s expertise in space optimization is truly remarkable."
   },
   {
     id: 3,
     name: "Emily Rodriguez",
     role: "Business Owner",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
+    image: "testimonial women2.jpg",
     text: "Our office redesign by ZSpace has received countless compliments. They created a perfect balance of professionalism and comfort. The project was completed on time and within budget."
   }
 ];
