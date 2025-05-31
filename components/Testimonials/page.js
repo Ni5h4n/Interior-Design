@@ -67,20 +67,21 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="py-16 bg-gray-50" ref={ref}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 bg-gradient-to-b from-gray-950 to-black relative overflow-hidden" ref={ref}>
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={controls}
           variants={containerVariants}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl lg:text-5xl font-extrabold text-white mb-4 tracking-tight">
             What Our Clients Say
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Don&apos;t just take our word for it. Here&apos;s what our clients have to say about their experience with ZSpace.
+          <p className="text-lg text-gray-400 max-w-3xl mx-auto mb-8 leading-relaxed">
+            Hear directly from those who have experienced the ZSpace Decore difference.
           </p>
+          <div className="w-24 h-1 bg-gray-700 mx-auto rounded-full"></div>
         </motion.div>
 
         <motion.div
@@ -93,20 +94,25 @@ const Testimonials = () => {
             <motion.div
               key={testimonial.id}
               variants={itemVariants}
-              className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300"
+              className="bg-gray-800/40 backdrop-blur-md rounded-3xl p-8 border border-gray-700/60 hover:border-gray-600/80 transition-all duration-300 ease-in-out transform hover:-translate-y-2 hover:shadow-2xl"
             >
-              <div className="flex items-center mb-4">
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  className="w-12 h-12 rounded-full object-cover"
-                />
-                <div className="ml-4">
-                  <h3 className="text-lg font-semibold text-gray-900">{testimonial.name}</h3>
-                  <p className="text-sm text-gray-600">{testimonial.role}</p>
+              <div className="flex items-center mb-6">
+                <div className="relative w-16 h-16 mr-4 flex-shrink-0">
+                  <Image
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    fill
+                    className="rounded-full object-cover border-2 border-gray-600"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-white font-bold text-lg leading-tight">{testimonial.name}</h3>
+                  <p className="text-gray-400 text-sm">{testimonial.role}</p>
                 </div>
               </div>
-              <p className="text-gray-700">{testimonial.text}</p>
+              <p className="text-gray-200 text-lg leading-relaxed font-light italic">
+                &ldquo;{testimonial.text}&rdquo;
+              </p>
             </motion.div>
           ))}
         </motion.div>
