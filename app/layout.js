@@ -47,10 +47,12 @@ export default function RootLayout({ children }) {
           fetchPriority="high"
         />
       </head>
-      <body className={`${inter.className} ${playfair.variable} ${roboto.variable} overflow-x-hidden`}>
+      <body className={`${inter.className} ${playfair.variable} ${roboto.variable} min-h-screen flex flex-col`}>
         <SpeedInsights/>
         <Navbar/>
-        {children}
+        <main className="flex-grow">
+          {children}
+        </main>
         <Footer/>
       </body>
     </html>
