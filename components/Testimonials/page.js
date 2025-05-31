@@ -67,7 +67,7 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-b from-gray-950 to-black relative overflow-hidden" ref={ref}>
+    <section id="testimonials" className="py-24 bg-gradient-to-b from-gray-950 to-black relative overflow-hidden" ref={ref}>
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
