@@ -1,129 +1,112 @@
 "use client";
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { motion, useInView } from 'motion/react';
+import { motion, useAnimation, useInView } from 'framer-motion';
+
+const testimonials = [
+  {
+    id: 1,
+    name: "Sarah Johnson",
+    role: "Homeowner",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
+    text: "ZSpace transformed our living room into a stunning space. Their attention to detail and creative solutions exceeded our expectations. The team was professional and made the entire process enjoyable."
+  },
+  {
+    id: 2,
+    name: "Michael Chen",
+    role: "Apartment Owner",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
+    text: "I was amazed by how they maximized our small apartment space. The design is both functional and beautiful. The team&apos;s expertise in space optimization is truly remarkable."
+  },
+  {
+    id: 3,
+    name: "Emily Rodriguez",
+    role: "Business Owner",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80",
+    text: "Our office redesign by ZSpace has received countless compliments. They created a perfect balance of professionalism and comfort. The project was completed on time and within budget."
+  }
+];
 
 const Testimonials = () => {
-  const testimonials = [
-    {
-      id: 1,
-      name: "Sarah Anderson",
-      role: "Homeowner",
-      image: "/testimonial women1.jpg",
-      quote: "The attention to detail and creativity brought to our home exceeded all expectations. Every corner tells a story of thoughtful design, truly reflecting our dream.",
-      rating: 5
-    },
-    {
-      id: 2,
-      name: "Michael Chen",
-      role: "Business Owner",
-      image: "/testimonial man 1.jpg",
-      quote: "Their ability to transform our office space into a modern, functional environment while maintaining our brand identity was remarkable and seamless.",
-      rating: 5
-    },
-    {
-      id: 3,
-      name: "Emma Rodriguez",
-      role: "Interior Design Enthusiast",
-      image: "/testimonial women2.jpg",
-      quote: "Working with this team was a dream. They understood my vision perfectly and delivered a space that feels uniquely mine, exceeding my highest hopes.",
-      rating: 5
+  const controls = useAnimation();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
     }
-  ];
+  }, [controls, isInView]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.2,
         delayChildren: 0.1
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.95 },
-    visible: {
-      opacity: 1,
+    hidden: { 
+      opacity: 0, 
+      y: 20,
+      scale: 0.95
+    },
+    visible: { 
+      opacity: 1, 
       y: 0,
       scale: 1,
       transition: {
-        type: "spring",
-        stiffness: 70,
-        damping: 10,
-        duration: 0.8,
+        duration: 0.5,
         ease: "easeOut"
       }
     }
   };
 
-  const sectionRef = React.useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.4 });
-
   return (
-    <section ref={sectionRef} id='testimonials' className="py-24 bg-gradient-to-b from-gray-950 to-black relative overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
+    <section className="py-16 bg-gray-50" ref={ref}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: -30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: "easeOut" }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={controls}
+          variants={containerVariants}
+          className="text-center mb-12"
         >
-          <h2 className="text-4xl lg:text-5xl font-extrabold text-white mb-4 tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             What Our Clients Say
           </h2>
-          <p className="text-lg text-gray-400 max-w-3xl mx-auto mb-8 leading-relaxed">
-            Hear directly from those who have experienced the ZSpace Decore difference.
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Don&apos;t just take our word for it. Here&apos;s what our clients have to say about their experience with ZSpace.
           </p>
-          <div className="w-24 h-1 bg-gray-700 mx-auto rounded-full"></div>
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           variants={containerVariants}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          animate={controls}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {testimonials.map((testimonial) => (
             <motion.div
               key={testimonial.id}
-              className="bg-gray-800/40 backdrop-blur-md rounded-3xl p-8 border border-gray-700/60 hover:border-gray-600/80 transition-all duration-300 ease-in-out transform hover:-translate-y-2 hover:shadow-2xl flex flex-col justify-between"
               variants={itemVariants}
+              className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300"
             >
-              <div>
-                <div className="flex mb-6 text-yellow-400">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <svg
-                      key={i}
-                      className="w-5 h-5 mr-1"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-
-                <p className="text-gray-200 text-xl mb-8 leading-relaxed font-light italic">
-                  &ldquo;{testimonial.quote}&rdquo;
-                </p>
-              </div>
-
-              <div className="flex items-center mt-auto pt-4 border-t border-gray-700/50">
-                <div className="relative w-16 h-16 mr-4 flex-shrink-0">
-                  <Image
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    fill
-                    className="rounded-full object-cover border-2 border-gray-600"
-                  />
-                </div>
-                <div>
-                  <h4 className="text-white font-bold text-lg leading-tight">{testimonial.name}</h4>
-                  <p className="text-gray-400 text-sm">{testimonial.role}</p>
+              <div className="flex items-center mb-4">
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  className="w-12 h-12 rounded-full object-cover"
+                />
+                <div className="ml-4">
+                  <h3 className="text-lg font-semibold text-gray-900">{testimonial.name}</h3>
+                  <p className="text-sm text-gray-600">{testimonial.role}</p>
                 </div>
               </div>
+              <p className="text-gray-700">{testimonial.text}</p>
             </motion.div>
           ))}
         </motion.div>

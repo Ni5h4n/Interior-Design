@@ -37,7 +37,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="overflow-x-hidden">
       <head>
         <link 
           rel="preload" 
@@ -47,7 +47,7 @@ export default function RootLayout({ children }) {
           fetchPriority="high"
         />
       </head>
-      <body className={`${inter.className} ${playfair.variable} ${roboto.variable}`}>
+      <body className={`${inter.className} ${playfair.variable} ${roboto.variable} overflow-x-hidden`}>
         <SpeedInsights/>
         <Navbar/>
         {children}
