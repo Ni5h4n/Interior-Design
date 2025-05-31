@@ -1,10 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { usePathname } from 'next/navigation'
+import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
 
 const navItems = [
   { title: 'Home', href: '/' },
@@ -64,136 +63,112 @@ const Curve = () => {
 }
 
 const Navbar = () => {
-  const pathname = usePathname()
-  const [active, setActive] = useState('/')
   const [isOpen, setIsOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
-    const match = navItems.find(item => item.href === pathname)
-    if (match) setActive(pathname)
-  }, [pathname])
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0)
+    }
 
-  const handleClick = (href) => {
-    setActive(href)
-    setIsOpen(false)
-  }
+    // Set initial scroll state
+    handleScroll()
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
-    <>
-      {/* Fixed Hamburger Menu Button */}
-      <div className="fixed top-8 right-10 z-[200] md:hidden">
-        <button 
-          onClick={() => setIsOpen(!isOpen)}
-          className="relative w-10 h-10 flex flex-col justify-center items-center bg-black rounded-lg"
-          aria-label="Toggle menu"
-        >
-          <motion.span 
-            animate={isOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-            className="w-6 h-0.5 bg-white origin-center"
-          />
-          <motion.span 
-            animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
-            className="w-6 h-0.5 bg-white my-1.5"
-          />
-          <motion.span 
-            animate={isOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-            className="w-6 h-0.5 bg-white origin-center"
-          />
-        </button>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isScrolled ? 'bg-black/80 backdrop-blur-md' : 'bg-transparent'
+    }`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          <Link href="/" className="flex items-center">
+            <span className="text-2xl font-bold text-white">ZSpace</span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            <Link href="/" className="text-gray-300 hover:text-white transition-colors">
+              Home
+            </Link>
+            <Link href="/about" className="text-gray-300 hover:text-white transition-colors">
+              About
+            </Link>
+            <Link href="/services" className="text-gray-300 hover:text-white transition-colors">
+              Services
+            </Link>
+            <Link href="/contact" className="text-gray-300 hover:text-white transition-colors">
+              Contact
+            </Link>
+          </div>
+
+          {/* Mobile Navigation Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden text-white focus:outline-none"
+            aria-label="Toggle menu"
+          >
+            <div className="w-6 h-6 flex flex-col justify-center items-center">
+              <span className={`block w-6 h-0.5 bg-white transform transition-all duration-300 ${
+                isOpen ? 'rotate-45 translate-y-0.5' : '-translate-y-1'
+              }`}></span>
+              <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
+                isOpen ? 'opacity-0' : 'opacity-100'
+              }`}></span>
+              <span className={`block w-6 h-0.5 bg-white transform transition-all duration-300 ${
+                isOpen ? '-rotate-45 -translate-y-0.5' : 'translate-y-1'
+              }`}></span>
+            </div>
+          </button>
+        </div>
       </div>
 
-      {/* Main Navbar */}
-      <nav className='flex justify-between items-center w-full px-4 md:px-10 py-2 relative'>
-        {/* Logo */}
-        <div className="logo">
-          <Image src="/Zspace logo.jpg" alt="logo" width={120} height={80} />
-        </div>
-
-        {/* Desktop Nav Links */}
-        <div className="hidden md:flex navlinks relative gap-4 rounded-full px-4 py-2">
-          {navItems.map((item) => (
-            <Link
-              href={item.href}
-              key={item.title}
-              onClick={() => handleClick(item.href)}
-            >
-              <div className="relative px-4 py-2 cursor-pointer group">
-                {active === item.href && (
-                  <motion.div
-                    layoutId="nav-active"
-                    className="absolute inset-0 bg-black rounded-lg z-0"
-                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                  />
-                )}
-                <span className={`relative z-10 ${item.href === active ? 'text-white' : 'text-black'} transition-colors duration-300`}>
-                  {item.title}
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </nav>
-
-      {/* Mobile Sidebar */}
-      <AnimatePresence mode="wait">
+      {/* Mobile Navigation Menu */}
+      <AnimatePresence>
         {isOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-black/50 z-40 md:hidden"
-            />
-            
-            {/* Sidebar */}
-            <motion.div
-              variants={menuSlide}
-              initial="initial"
-              animate="enter"
-              exit="exit"
-              className="fixed top-0 right-0 h-full w-[280px] bg-black z-50 md:hidden rounded-l-[40px]"
-            >
-              <div className="flex flex-col h-full pt-20 px-10">
-                <div className="text-gray-400 text-xs uppercase border-b border-white pb-4 mb-10">
-                  Navigation
-                </div>
-                <div className="flex flex-col">
-                  {navItems.map((item, index) => (
-                    <motion.div
-                      key={item.title}
-                      custom={index}
-                      variants={slide}
-                      initial="initial"
-                      animate="enter"
-                      exit="exit"
-                    >
-                      <Link
-                        href={item.href}
-                        onClick={() => handleClick(item.href)}
-                      >
-                        <motion.div 
-                          className="relative text-4xl font-light text-white hover:text-gray-300 transition-colors duration-300 py-4"
-                          whileHover={{ x: 10 }}
-                          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                        >
-                          {item.title}
-                        </motion.div>
-                      </Link>
-                      {index < navItems.length - 1 && (
-                        <div className="h-px bg-white w-full" />
-                      )}
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-              <Curve />
-            </motion.div>
-          </>
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-black/95 backdrop-blur-md"
+          >
+            <div className="px-4 pt-2 pb-4 space-y-2">
+              <Link
+                href="/"
+                className="block px-3 py-2 text-white hover:bg-gray-800 rounded-md transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                Home
+              </Link>
+              <Link
+                href="/about"
+                className="block px-3 py-2 text-white hover:bg-gray-800 rounded-md transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                About
+              </Link>
+              <Link
+                href="/services"
+                className="block px-3 py-2 text-white hover:bg-gray-800 rounded-md transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                Services
+              </Link>
+              <Link
+                href="/contact"
+                className="block px-3 py-2 text-white hover:bg-gray-800 rounded-md transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                Contact
+              </Link>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </nav>
   )
 }
 
