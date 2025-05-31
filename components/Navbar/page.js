@@ -81,7 +81,7 @@ const Navbar = () => {
   return (
     <>
       {/* Fixed Hamburger Menu Button */}
-      <div className="fixed top-8 right-8 z-[200] md:hidden">
+      <div className="fixed top-8 right-6 z-[200] md:hidden">
         <button 
           onClick={() => setIsOpen(!isOpen)}
           className="relative w-10 h-10 flex flex-col justify-center items-center bg-black rounded-lg"
