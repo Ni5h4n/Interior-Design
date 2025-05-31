@@ -2,7 +2,7 @@ import { Inter, Playfair_Display, Roboto } from 'next/font/google'
 import './globals.css'
 import Footer from "@/components/Footer/page";
 import Navbar from "@/components/Navbar/page";
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 const inter = Inter({ subsets: ['latin'] })
 const playfair = Playfair_Display({ 
   subsets: ['latin'],
@@ -48,6 +48,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={`${inter.className} ${playfair.variable} ${roboto.variable}`}>
+        <SpeedInsights/>
         <Navbar/>
         {children}
         <Footer/>
