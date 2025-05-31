@@ -1,9 +1,19 @@
-import { Inter } from 'next/font/google'
+import { Inter, Playfair_Display, Roboto } from 'next/font/google'
 import './globals.css'
 import Footer from "@/components/Footer/page";
 import Navbar from "@/components/Navbar/page";
 
 const inter = Inter({ subsets: ['latin'] })
+const playfair = Playfair_Display({ 
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-playfair',
+})
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  variable: '--font-roboto',
+})
 
 export const metadata = {
   title: 'ZSpace Decore - Modern Interior Design Solutions',
@@ -37,7 +47,7 @@ export default function RootLayout({ children }) {
           fetchPriority="high"
         />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} ${playfair.variable} ${roboto.variable}`}>
         <Navbar/>
         {children}
         <Footer/>
