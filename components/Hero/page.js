@@ -26,7 +26,7 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center md:text-left px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+      <div className="relative z-10 text-center md:text-left px-4 sm:px-6 lg:px-8 md:max-w-4xl md:ml-8 lg:ml-16">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -39,7 +39,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-lg sm:text-xl text-gray-200 mb-8 max-w-2xl mx-auto md:mx-0"
+          className="text-lg sm:text-xl text-gray-200 mb-8 max-w-2xl md:max-w-xl"
         >
           Experience the perfect blend of elegance and comfort with our expert interior design solutions.
         </motion.p>
