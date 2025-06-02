@@ -31,8 +31,14 @@ export const metadata = {
     title: 'ZSpace Decore - Modern Interior Design Solutions',
     description: 'Transform your living space with ZSpace Decore. Expert interior design solutions combining elegance and comfort.',
   },
-  viewport: 'width=device-width, initial-scale=1',
   robots: 'index, follow',
+}
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 }
 
 export default function RootLayout({ children }) {

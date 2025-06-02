@@ -50,13 +50,15 @@ const Hero = () => {
           className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
         >
           <button
-            onClick={scrollToTestimonials}
             className="px-8 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-300"
           >
             Get Started
           </button>
-          <button className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-black transition-colors duration-300">
-            Book a Consultation
+          <button 
+            onClick={scrollToTestimonials}
+            className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-black transition-colors duration-300"
+          >
+            Hear From Our Clients
           </button>
         </motion.div>
       </div>
