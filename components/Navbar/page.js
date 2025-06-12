@@ -106,7 +106,7 @@ const Navbar = () => {
       <nav className='flex justify-between items-center w-full px-4 md:px-10 py-2 relative'>
         {/* Logo */}
         <div className="logo">
-          <Image src="/Zspace logo.jpg" alt="logo" width={120} height={80} />
+          <h2 className="text-2xl font-bold">Brute Interiors</h2>
         </div>
 
         {/* Desktop Nav Links */}

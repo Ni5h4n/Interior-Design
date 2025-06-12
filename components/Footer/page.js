@@ -56,12 +56,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-start">
           {/* Brand & Copyright */}
           <motion.div className="lg:col-span-1" variants={itemVariants}>
-            <h3 className="text-3xl font-extrabold text-white mb-4 tracking-tight">ZSpace Decore</h3>
+            <h3 className="text-3xl font-extrabold text-white mb-4 tracking-tight">Brute Interiors</h3>
             <p className="text-gray-500 text-sm leading-relaxed max-w-xs">
               Crafting exceptional spaces that inspire and transform.
             </p>
             <p className="text-gray-500 text-xs mt-6">
-              © {new Date().getFullYear()} ZSpace Decore. All rights reserved.
+              © {new Date().getFullYear()} Brute Interiors. All rights reserved.
             </p>
           </motion.div>
 

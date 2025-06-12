@@ -79,7 +79,7 @@ const Testimonials = () => {
             What Our Clients Say
           </h2>
           <p className="text-lg text-gray-400 max-w-3xl mx-auto mb-8 leading-relaxed">
-            Hear directly from those who have experienced the ZSpace Decore difference.
+            Hear directly from those who have experienced the Brute Interiors difference.
           </p>
           <div className="w-24 h-1 bg-gray-700 mx-auto rounded-full"></div>
         </motion.div>

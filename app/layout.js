@@ -16,20 +16,20 @@ const roboto = Roboto({
 })
 
 export const metadata = {
-  title: 'ZSpace Decore - Modern Interior Design Solutions',
-  description: 'Transform your living space with ZSpace Decore. Expert interior design solutions combining elegance and comfort. Book a consultation for your dream home transformation.',
+  title: 'Brute Interiors - Modern Interior Design Solutions',
+  description: 'Transform your living space with Brute Interiors. Expert interior design solutions combining elegance and comfort. Book a consultation for your dream home transformation.',
   keywords: 'interior design, home decor, space transformation, modern interior, design consultation',
   openGraph: {
-    title: 'ZSpace Decore - Modern Interior Design Solutions',
-    description: 'Transform your living space with ZSpace Decore. Expert interior design solutions combining elegance and comfort.',
+    title: 'Brute Interiors - Modern Interior Design Solutions',
+    description: 'Transform your living space with Brute Interiors. Expert interior design solutions combining elegance and comfort.',
     type: 'website',
     locale: 'en_US',
-    siteName: 'ZSpace Decore',
+    siteName: 'Brute Interiors',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ZSpace Decore - Modern Interior Design Solutions',
-    description: 'Transform your living space with ZSpace Decore. Expert interior design solutions combining elegance and comfort.',
+    title: 'Brute Interiors - Modern Interior Design Solutions',
+    description: 'Transform your living space with Brute Interiors. Expert interior design solutions combining elegance and comfort.',
   },
   robots: 'index, follow',
 }

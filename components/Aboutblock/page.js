@@ -33,7 +33,7 @@ const About = () => {
           About Our Studio
         </h2>
         <p className="leading-relaxed text-gray-700 text-lg font-sans">
-          At ZSpace Decore, we blend art and science to craft optimal, sustainable, and beautiful environments. We meticulously analyze flow and balance functions with site, culture, and climate to create truly remarkable interiors. Our aim is to simplify your design journey, ensuring unparalleled quality and value within your budget.
+          At Brute Interiors, we blend art and science to craft optimal, sustainable, and beautiful environments. We meticulously analyze flow and balance functions with site, culture, and climate to create truly remarkable interiors. Our aim is to simplify your design journey, ensuring unparalleled quality and value within your budget.
         </p>
         <p className="leading-relaxed text-gray-700 text-lg font-sans mb-4">
           Ready to see our vision?
