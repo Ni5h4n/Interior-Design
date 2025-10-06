@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'motion/react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -103,7 +103,7 @@ const Navbar = () => {
       </div>
 
       {/* Main Navbar */}
-      <nav className='flex justify-between items-center w-full px-4 md:px-10 py-2 relative'>
+      <nav className='flex justify-between items-center w-full px-4 md:px-10 py-4 relative'>
         {/* Logo */}
         <div className="logo">
           <h2 className="text-2xl font-bold">Brute Interiors</h2>
